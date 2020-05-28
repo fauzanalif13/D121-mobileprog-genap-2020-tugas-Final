@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Aplikasi ToDoList</string>
+
+    <string-array name="option_item">
+        <item>Keterangan</item>
+        <item>Sunting</item>
+        <item>Hapus</item>
+    </string-array>
+</resources>
