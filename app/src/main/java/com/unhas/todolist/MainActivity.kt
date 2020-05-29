@@ -164,12 +164,12 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun showDetailDialog(task: Task) {
-        val title = "Title: ${task.title}"
-        val dueDate = "Due date: ${task.dueDate}, ${task.dueTime}"
-        val note = "Note: ${task.note}"
-        val dateCreated = "Date created: ${task.dateCreated}"
-        val dateUpdated = "Date updated: ${task.dateUpdated}"
-        val strReminder = if(task.remindMe) "Enabled" else "Disabled"
+        val title = "Judul: ${task.title}"
+        val dueDate = "Tanggal Deadline: ${task.dueDate}, ${task.dueTime}"
+        val note = "Catatan: ${task.note}"
+        val dateCreated = "Tanggal Dibuat: ${task.dateCreated}"
+        val dateUpdated = "Tanggal Diupdate: ${task.dateUpdated}"
+        val strReminder = if(task.remindMe) "Diaktifkan" else "Dinonaktifkan"
         val remindMe = "Reminder: $strReminder"
 
         val strMessage = "$title\n$dueDate\n$note\n\n$dateCreated\n$dateUpdated\n$remindMe"
@@ -234,7 +234,7 @@ class MainActivity : AppCompatActivity() {
         val searchManager = getSystemService(Context.SEARCH_SERVICE) as SearchManager
         val searchView = (menu.findItem(R.id.search)).actionView as androidx.appcompat.widget.SearchView
         searchView.setSearchableInfo(searchManager.getSearchableInfo(componentName))
-        searchView.queryHint = "Search tasks"
+        searchView.queryHint = "Cari Reminder"
         searchView.setOnQueryTextListener(object: androidx.appcompat.widget.SearchView.OnQueryTextListener{
             override fun onQueryTextSubmit(query: String?): Boolean {
                 searchView.clearFocus()
