@@ -156,7 +156,7 @@ class MainActivity : AppCompatActivity() {
 
                 taskViewModel.updateTask(task)
                 if (remindMe && prevDueTime!=time) {
-                    notifyAlarm.setReminderAlarm(this, dueDate, time,"$title is due in 1 hour")
+                    notifyAlarm.setReminderAlarm(this, dueDate, time,"$title dalam 1 jam kemudian.")
                 }
                 Toast.makeText(this, toastMessage, Toast.LENGTH_SHORT).show()
             }
