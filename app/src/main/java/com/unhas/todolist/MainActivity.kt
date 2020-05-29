@@ -94,9 +94,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun showDeleteDialog(task: Task) {
-        val dialogTitle = "Delete"
-        val dialogMessage = "Are you sure want to delete this task?"
-        val toastMessage = "Data has been deleted successfully"
+        val dialogTitle = "Hapus"
+        val dialogMessage = "Apakah Anda yakin untuk menghapus pengingat ini?"
+        val toastMessage = "Data berhasil untuk dihapus"
 
         ConfirmDialog(this, dialogTitle, dialogMessage) {
             taskViewModel.deleteTask(task)
@@ -120,9 +120,9 @@ class MainActivity : AppCompatActivity() {
         view.input_time.setText(task.dueTime)
         view.input_remind_me.isChecked = task.remindMe
 
-        val dialogTitle = "Edit Task"
-        val toastMessage = "Task has been updated successfully"
-        val failAlertMessage = "Please fill all the required fields"
+        val dialogTitle = "Sunting"
+        val toastMessage = "Reminder berhasil untuk disunting"
+        val failAlertMessage = "Mohon untuk mengisi semua form wajibnya"
 
         FormDialog(this, dialogTitle, view){
             val title = view.input_title.text.toString().trim()
@@ -190,9 +190,9 @@ class MainActivity : AppCompatActivity() {
             Commons.showTimePickerDialog(this, view.input_time)
         }
 
-        val dialogTitle = "Add Task"
-        val toastMessage = "Task has been added successfully"
-        val failAlertMessage = "Please fill all required fields"
+        val dialogTitle = "Tambah Pengingat"
+        val toastMessage = "Reminder telah berhasil untuk dijalankan"
+        val failAlertMessage = "Mohon untuk mengisi semua form wajibnya"
 
         FormDialog(this,dialogTitle,view){
             val title = view.input_title.text.toString().trim()
@@ -208,25 +208,19 @@ class MainActivity : AppCompatActivity() {
                         dialogInterface.cancel()
                     }.create().show()
             }else{
-                val parsedDate = Commons.convertStringToDate("dd/MM/yy",date)
-                val dueDate = Commons.formatDate(parsedDate, "dd/MM/yy")
+                val parsedDate = Commons.convertStringToDate("dd/mm/yy",date)
+                val dueDate = Commons.formatDate(parsedDate, "dd/mm/yy")
 
                 val currentDate = Commons.getCurrentDateTime()
-                val dateCreated =Commons.formatDate(currentDate, "dd/MM/yy HH:mm:ss")
+                val dateCreated =Commons.formatDate(currentDate, "dd/mm/yy HH:mm:ss")
 
                 val task = Task(
-                    title = title,
-                    note = note,
-                    dateCreated = dateCreated,
-                    dateUpdated = dateCreated,
-                    dueDate = dueDate,
-                    dueTime = time,
-                    remindMe = remindMe
-                )
+                    title = title, note = note, dateCreated = dateCreated, dateUpdated = dateCreated, dueDate = dueDate,
+                    dueTime = time, remindMe = remindMe)
 
                 taskViewModel.insertTask(task)
                 if (remindMe) {
-                    notifyAlarm.setReminderAlarm(this, dueDate, time,"$title is due in 1 hour")
+                    notifyAlarm.setReminderAlarm(this, dueDate, time,"$title untuk sejam kemudian! :)")
                 }
                 Toast.makeText(this, toastMessage, Toast.LENGTH_SHORT).show()
             }
